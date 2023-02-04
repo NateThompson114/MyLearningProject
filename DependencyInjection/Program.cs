@@ -11,6 +11,10 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<Demo>();
 builder.Services.AddTransient<ProcessDemo>();
 
+//! Singleton - Give only one instance for the lifetime
+//! Scoped - Gives only one instance per call
+//! Transient - Give a new call for every instance and call
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
