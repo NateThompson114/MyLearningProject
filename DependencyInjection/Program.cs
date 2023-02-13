@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<Demo>();
+builder.Services.AddTransient<IDemo, UtcDemo>();
 builder.Services.AddTransient<ProcessDemo>();
 
 //! Singleton - Give only one instance for the lifetime

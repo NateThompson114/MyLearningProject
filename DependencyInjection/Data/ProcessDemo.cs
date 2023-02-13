@@ -2,9 +2,9 @@
 {
     public class ProcessDemo
     {
-        private readonly Demo _demo;
+        private readonly IDemo _demo;
 
-        public ProcessDemo(Demo demo)
+        public ProcessDemo(IDemo demo)
         {
             _demo = demo;
         }

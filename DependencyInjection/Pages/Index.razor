@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using DependencyInjection.Data
-@inject Demo Demo
+@inject IDemo Demo
+@inject IDemo Demo2
 @inject ProcessDemo ProcessDemo
 
 <PageTitle>Index</PageTitle>
@@ -9,7 +10,9 @@
 
 Welcome to your new app.
 <p>
-    Startup time @Demo.StartupTime.ToLocalTime().ToString("hh:mm:ss fffff")
+    Startup time @Demo.StartupTime.ToLocalTime().ToString("hh:mm:ss ffffff")
+    <br />
+    Startup time @Demo2.StartupTime.ToLocalTime().ToString("hh:mm:ss ffffff")
     <br />
     <i>Days in Month: @ProcessDemo.GetDaysInMonth()</i>
 </p>
