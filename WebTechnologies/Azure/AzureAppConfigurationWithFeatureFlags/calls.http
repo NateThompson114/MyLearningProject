@@ -1,0 +1,9 @@
+﻿### GET HelloWorld
+GET http://localhost:5199/
+Accept: application/json
+
+### GET Working FeatureFlag
+GET http://localhost:5199/Test
+
+### GET Mising FeatureFlage
+GET http://localhost:5199/Missing
