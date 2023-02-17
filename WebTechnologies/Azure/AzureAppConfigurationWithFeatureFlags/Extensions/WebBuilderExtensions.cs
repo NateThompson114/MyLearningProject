@@ -17,7 +17,10 @@ public static class WebBuilderExtensions
         {
             // options.Connect(new Uri(appConfigConnectionString), credential); //<-1 Should use with the credential
             options.Connect(appConfigConnectionString);
-            options.UseFeatureFlags();
+            options.UseFeatureFlags(flagOptions =>
+            {
+                flagOptions.CacheExpirationInterval = TimeSpan.FromSeconds(5); //This can be set to 5 minutes to reduce the pooling
+            });
         });
     }
 }
