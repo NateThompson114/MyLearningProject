@@ -7,6 +7,7 @@ public static class WebBuilderExtensions
 {
     public static void AddAzureAppConfigurationAndKeyVaultServices(this WebApplicationBuilder builder)
     {
+        var settings = builder.Configuration;
         var appConfigConnectionString = builder.Configuration.GetConnectionString("AppConfig");
         // var credential = new DefaultAzureCredential(); //<-1 Should use for application also removes dangerous connection string
 
@@ -17,8 +18,10 @@ public static class WebBuilderExtensions
         {
             // options.Connect(new Uri(appConfigConnectionString), credential); //<-1 Should use with the credential
             options.Connect(appConfigConnectionString);
+            // options.UseFeatureFlags(); // This is needed to enable feature flags
             options.UseFeatureFlags(flagOptions =>
             {
+                flagOptions.Label = settings["environment"];
                 flagOptions.CacheExpirationInterval = TimeSpan.FromSeconds(5); //This can be set to 5 minutes to reduce the pooling
             });
         });
