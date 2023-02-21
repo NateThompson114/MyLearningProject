@@ -6,4 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RestApi.Application\RestApi.Application.csproj" />
+      <ProjectReference Include="..\RestApi.Contracts\RestApi.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

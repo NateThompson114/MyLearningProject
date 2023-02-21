@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAppConfigurationWithFe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi", "WebTechnologies\REST\RestApi\RestApi.csproj", "{D5046FFA-9EF1-4A16-9AAB-DAF61E2F054B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi.Application", "WebTechnologies\REST\RestApi.Application\RestApi.Application.csproj", "{200E79F6-EC5E-4734-87D1-0BF7B05B1CE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi.Contracts", "WebTechnologies\REST\RestApi.Contracts\RestApi.Contracts.csproj", "{37CB305F-5910-4721-91D5-31B086CD7F12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{D5046FFA-9EF1-4A16-9AAB-DAF61E2F054B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5046FFA-9EF1-4A16-9AAB-DAF61E2F054B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5046FFA-9EF1-4A16-9AAB-DAF61E2F054B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{200E79F6-EC5E-4734-87D1-0BF7B05B1CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{200E79F6-EC5E-4734-87D1-0BF7B05B1CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{200E79F6-EC5E-4734-87D1-0BF7B05B1CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{200E79F6-EC5E-4734-87D1-0BF7B05B1CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37CB305F-5910-4721-91D5-31B086CD7F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37CB305F-5910-4721-91D5-31B086CD7F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37CB305F-5910-4721-91D5-31B086CD7F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37CB305F-5910-4721-91D5-31B086CD7F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
