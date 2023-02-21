@@ -27,4 +27,12 @@ public static class ContractMapping
             Genres = movie.Genres
         };
     }
+
+    public static MoviesResponse MapToMoviesResponse(this IEnumerable<Movie> movies)
+    {
+        return new MoviesResponse
+        {
+            Movies = movies.Select(MapToMovieResponse)
+        };
+    }
 }

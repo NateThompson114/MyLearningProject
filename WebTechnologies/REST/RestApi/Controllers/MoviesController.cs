@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestApi.Application.Models;
 using RestApi.Application.Repositories;
 using RestApi.Contracts.Request;
 using RestApi.Mapping;
@@ -19,11 +20,31 @@ public class MoviesController : Controller
     public async Task<IActionResult> Create([FromBody]CreateMovieRequest request)
     {
         var movie = request.MapToMovie();
-
         await _movieRepository.CreateAsync(movie);
-
         var movieResponse = movie.MapToMovieResponse();
-
         return Created($"/{ApiEndPoints.Movies.Create}/{movie.Id}", movieResponse);
+    }
+
+    [HttpGet(ApiEndPoints.Movies.Get)]
+    public async Task<IActionResult> Get([FromRoute] Guid id)
+    {
+        var movie = await _movieRepository.GetByIdAsync(id);
+        if (movie is null)
+        {
+            return NotFound();
+        }
+
+        var response = movie.MapToMovieResponse();
+        return Ok(response);
+    }
+
+    [HttpGet(ApiEndPoints.Movies.GetAll)]
+    public async Task<IActionResult> GetAll()
+    {
+        var movies = await _movieRepository.GetAllAsync();
+
+        var moviesResponse = movies.MapToMoviesResponse();
+
+        return Ok(moviesResponse);
     }
 }
