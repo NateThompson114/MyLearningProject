@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestApi.Application.Models;
 using RestApi.Application.Repositories;
 using RestApi.Contracts.Request;
-using RestApi.Contracts.Responses;
 using RestApi.Mapping;
 
 namespace RestApi.Controllers;
 
 [ApiController]
-[Route("api")]
 public class MoviesController : Controller
 {
     private readonly IMovieRepository _movieRepository;
@@ -18,7 +15,7 @@ public class MoviesController : Controller
         _movieRepository = movieRepository;
     }
 
-    [HttpPost("movies")]
+    [HttpPost(ApiEndPoints.Movies.Create)]
     public async Task<IActionResult> Create([FromBody]CreateMovieRequest request)
     {
         var movie = request.MapToMovie();
@@ -27,6 +24,6 @@ public class MoviesController : Controller
 
         var movieResponse = movie.MapToMovieResponse();
 
-        return Created($"/api/movies/{movie.Id}", movieResponse);
+        return Created($"/{ApiEndPoints.Movies.Create}/{movie.Id}", movieResponse);
     }
 }
