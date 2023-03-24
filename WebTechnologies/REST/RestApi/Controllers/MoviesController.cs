@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestApi.Application.Models;
 using RestApi.Application.Repositories;
 using RestApi.Contracts.Request;
 using RestApi.Mapping;
@@ -11,7 +10,7 @@ public class MoviesController : Controller
 {
     private readonly IMovieRepository _movieRepository;
 
-    public MoviesController(IMovieRepository movieRepository)
+    public MoviesController( IMovieRepository movieRepository)
     {
         _movieRepository = movieRepository;
     }

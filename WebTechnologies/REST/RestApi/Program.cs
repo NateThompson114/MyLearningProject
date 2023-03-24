@@ -1,12 +1,14 @@
 using RestApi.Application;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
-// builder.Services.AddSingleton<IMovieRepository, MovieRepository>(); // This is the normal method, does not encapsulates properly
+builder.Services.AddDatabase(config.GetConnectionString("Main"));
 
 var app = builder.Build();
 

@@ -1,50 +1,49 @@
-﻿using RestApi.Application.Models;
+﻿using RestApi.Application.Database;
+using RestApi.Application.Models;
 
 namespace RestApi.Application.Repositories;
 
 public class MovieRepository : IMovieRepository
 {
-    private readonly List<Movie> _movies = new();
-
-    public Task<bool> CreateAsync(Movie movie)
+    private readonly IDbConnectionFactory _dbConnectionFactory;
+    public MovieRepository(IDbConnectionFactory dbConnectionFactory)
     {
-        _movies.Add(movie);
-        return Task.FromResult(true);
+        _dbConnectionFactory = dbConnectionFactory;
+    }
+
+    public async Task<bool> CreateAsync(Movie movie)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+        throw new NotImplementedException();
     }
 
     public Task<Movie?> GetByIdAsync(Guid id)
     {
-        var movie = _movies.SingleOrDefault(m => m.Id == id);
-        return Task.FromResult(movie);
+        throw new NotImplementedException();
     }
 
     public Task<Movie?> GetBySlugAsync(string slug)
     {
-        var movie = _movies.SingleOrDefault(m => m.Slug == slug);
-        return Task.FromResult(movie);
+        throw new NotImplementedException();
     }
 
     public Task<IEnumerable<Movie>> GetAllAsync()
     {
-        return Task.FromResult(_movies.AsEnumerable());
+        throw new NotImplementedException();
     }
 
     public Task<bool> UpdateAsync(Movie movie)
     {
-        var movieIndex = _movies.FindIndex(m => m.Id == movie.Id);
-        if (movieIndex == -1)
-        {
-            return Task.FromResult(false);
-        }
-
-        _movies[movieIndex] = movie;
-        return Task.FromResult(true);
+        throw new NotImplementedException();
     }
 
     public Task<bool> DeleteByIdAsync(Guid id)
     {
-        var removedCount = _movies.RemoveAll(m => m.Id == id);
-        var movieRemoved = removedCount > 0;
-        return Task.FromResult(movieRemoved);
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> ExistByIdAsync(Guid id)
+    {
+        throw new NotImplementedException();
     }
 }
