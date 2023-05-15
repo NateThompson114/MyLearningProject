@@ -13,17 +13,14 @@ namespace AddingAzureAppConfigAndManagedIdentityToBlobStorage.Controllers
         //private readonly IConfiguration _configuration;
         private readonly IFeatureManager _featureManager;
         public HomeController(
-            //IConfiguration configuration,
+            //IConfigurationBuilder configuration,
             IFeatureManager featureManager)
         {
             //_configuration = configuration;
             _featureManager = featureManager;
         }
 
-        public HomeController()
-        {
-            
-        }
+        public HomeController() { }
 
         public async Task<ActionResult> Index()
         {
