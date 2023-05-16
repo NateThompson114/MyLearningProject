@@ -63,13 +63,16 @@ public static class ServicesExtensions
                 
             });
 
-        //builder.Services.AddTransient<HttpMessageHandler>(sp =>
-        //    new NTLMHandler { InnerHandler = new HttpClientHandler() });
+        builder.Services.AddTransient<HttpMessageHandler>(sp =>
+            new NTLMHandler { InnerHandler = new HttpClientHandler() });
 
-        //builder.Services.AddHttpClient(Clients.NTLM, client =>
-        //{
-        //    client.BaseAddress = new Uri("YourServiceURL");
-        //}).ConfigurePrimaryHttpMessageHandler<NTLMHandler>();
+        builder.Services.AddHttpClient(Clients.NTLM, client =>
+        {
+            //client.BaseAddress = new Uri("YourServiceURL");
+        }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+        {
+            UseDefaultCredentials = true
+        });
     }
 
     public static void AddSwaggerGenWithOAuth(this WebApplicationBuilder builder)

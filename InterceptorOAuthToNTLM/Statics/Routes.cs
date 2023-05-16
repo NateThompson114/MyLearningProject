@@ -4,7 +4,7 @@
     {
         public const string Secure = "Secure";
 
-        public class Enpoints
+        public static class Enpoints
         {
             public const string InternalApi = "InternalApi";
             public const string PaymentProcessor = "PaymentProcessor"; //This should be misspelled I believe.

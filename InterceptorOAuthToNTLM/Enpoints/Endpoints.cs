@@ -40,37 +40,77 @@ public static class Endpoints
         //    }
         //}).RequireAuthorization();
 
+        //app.MapGet("/{**path}", async (string path, IHttpClientFactory httpClientFactory) =>
+        //{
+        //    if (!path.StartsWith($"{Routes.Secure}/"))
+        //        return Results.NotFound();
+
+        //    var newPath = path.ToLower().Substring($"{Routes.Secure}/".Length);
+
+        //    string clientName;
+        //    if (newPath.Contains(Routes.Enpoints.InternalApi))
+        //    {
+        //        newPath = "internal_api_uri" + newPath;
+        //        clientName = Clients.InternalApi;
+        //    }
+        //    else if (newPath.Contains(Routes.Enpoints.PaymentProcessor))
+        //    {
+        //        newPath = "payment_processor_uri" + newPath;
+        //        clientName = Clients.PaymentProcessor;
+        //    }
+        //    else if (newPath.Contains(Routes.Enpoints.PaymentProcessorV2))
+        //    {
+        //        newPath = "payment_processor_v2_uri" + newPath;
+        //        clientName = Clients.PaymentProcessorV2;
+        //    }
+        //    else
+        //    {
+        //        return Results.BadRequest("Invalid path. Path must contain 'InternalApi', 'PaymentProcessor', or 'PaymentProcessorV2'.");
+        //    }
+
+        //    var client = httpClientFactory.CreateClient(clientName);
+        //    var result = await client.GetAsync(newPath);
+
+        //    if (result.IsSuccessStatusCode)
+        //    {
+        //        var content = await result.Content.ReadAsStringAsync();
+        //        return Results.Ok(content);
+        //    }
+        //    else
+        //    {
+        //        return Results.Problem("Unable to get the data from the service");
+        //    }
+        //}).RequireAuthorization();
+
         app.MapGet("/{**path}", async (string path, IHttpClientFactory httpClientFactory) =>
         {
             if (!path.StartsWith($"{Routes.Secure}/"))
-            {
-                return Results.BadRequest($"Invalid path. Path must start with '{Routes.Secure}/'.");
-            }
+                return Results.NotFound();
 
             var newPath = path.ToLower().Substring($"{Routes.Secure}/".Length);
 
-            string clientName;
+            //string clientName;
             if (newPath.Contains(Routes.Enpoints.InternalApi))
             {
                 newPath = "internal_api_uri" + newPath;
-                clientName = Clients.InternalApi;
+                //clientName = Clients.InternalApi;
             }
             else if (newPath.Contains(Routes.Enpoints.PaymentProcessor))
             {
                 newPath = "payment_processor_uri" + newPath;
-                clientName = Clients.PaymentProcessor;
+                //clientName = Clients.PaymentProcessor;
             }
             else if (newPath.Contains(Routes.Enpoints.PaymentProcessorV2))
             {
                 newPath = "payment_processor_v2_uri" + newPath;
-                clientName = Clients.PaymentProcessorV2;
+                //clientName = Clients.PaymentProcessorV2;
             }
             else
             {
                 return Results.BadRequest("Invalid path. Path must contain 'InternalApi', 'PaymentProcessor', or 'PaymentProcessorV2'.");
             }
 
-            var client = httpClientFactory.CreateClient(clientName);
+            var client = httpClientFactory.CreateClient(Clients.NTLM);
             var result = await client.GetAsync(newPath);
 
             if (result.IsSuccessStatusCode)
