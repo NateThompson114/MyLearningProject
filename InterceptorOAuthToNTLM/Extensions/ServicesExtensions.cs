@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using InterceptorOAuthToNTLM.Filter;
 using InterceptorOAuthToNTLM.Handlers;
 using InterceptorOAuthToNTLM.Statics;
@@ -32,13 +33,43 @@ public static class ServicesExtensions
 
     public static void AddNTLMClient(this WebApplicationBuilder builder)
     {
-        builder.Services.AddTransient<HttpMessageHandler>(sp =>
-            new NTLMHandler { InnerHandler = new HttpClientHandler() });
+        var services = builder.Services;
 
-        builder.Services.AddHttpClient(Clients.NTLM, client =>
-        {
-            client.BaseAddress = new Uri("YourServiceURL");
-        }).ConfigurePrimaryHttpMessageHandler<NTLMHandler>();
+        services.AddHttpClient(Clients.InternalApi, c =>
+            {
+                // Configure client here
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                Credentials = new NetworkCredential("username_InternalApi", "password_InternalApi", "domain_InternalApi")
+            });
+
+        services.AddHttpClient(Clients.PaymentProcessor,c =>
+            {
+                // Configure client here
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                Credentials = new NetworkCredential("username_PaymentProcessor", "password_PaymentProcessor", "domain_PaymentProcessor")
+            });
+
+        services.AddHttpClient(Clients.PaymentProcessorV2, c =>
+            {
+                // Configure client here
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                Credentials = new NetworkCredential("username_PaymentProcessorV2", "password_PaymentProcessorV2", "domain_PaymentProcessorV2")
+                
+            });
+
+        //builder.Services.AddTransient<HttpMessageHandler>(sp =>
+        //    new NTLMHandler { InnerHandler = new HttpClientHandler() });
+
+        //builder.Services.AddHttpClient(Clients.NTLM, client =>
+        //{
+        //    client.BaseAddress = new Uri("YourServiceURL");
+        //}).ConfigurePrimaryHttpMessageHandler<NTLMHandler>();
     }
 
     public static void AddSwaggerGenWithOAuth(this WebApplicationBuilder builder)
