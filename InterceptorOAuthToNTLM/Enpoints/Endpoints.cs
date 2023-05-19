@@ -87,7 +87,7 @@ public static class Endpoints
             if (!path.StartsWith($"{Routes.Secure}", StringComparison.CurrentCultureIgnoreCase))
                 return Results.NotFound();
 
-            var newPath = path.ToLower().Substring($"{Routes.Secure}/".Length);
+            var newPath = path.ToLower().Substring($"{Routes.Secure}/".Length-1);
 
             //string clientName;
             if (newPath.Contains(Routes.Enpoints.InternalApi, StringComparison.CurrentCultureIgnoreCase))
