@@ -84,13 +84,13 @@ public static class Endpoints
 
         app.MapGet("/{**path}", async (string path, IHttpClientFactory httpClientFactory) =>
         {
-            if (!path.StartsWith($"{Routes.Secure}/"))
+            if (!path.StartsWith($"{Routes.Secure}", StringComparison.CurrentCultureIgnoreCase))
                 return Results.NotFound();
 
             var newPath = path.ToLower().Substring($"{Routes.Secure}/".Length);
 
             //string clientName;
-            if (newPath.Contains(Routes.Enpoints.InternalApi))
+            if (newPath.Contains(Routes.Enpoints.InternalApi, StringComparison.CurrentCultureIgnoreCase))
             {
                 newPath = "internal_api_uri" + newPath;
                 //clientName = Clients.InternalApi;

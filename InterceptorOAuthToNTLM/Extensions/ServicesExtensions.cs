@@ -14,6 +14,7 @@ public static class ServicesExtensions
 {
     public static void AddJwtOAuthToken(this WebApplicationBuilder builder)
     {
+        // This would be oauth
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -36,35 +37,35 @@ public static class ServicesExtensions
         var services = builder.Services;
 
         services.AddHttpClient(Clients.InternalApi, c =>
-            {
-                // Configure client here
-            })
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-            {
-                Credentials = new NetworkCredential("username_InternalApi", "password_InternalApi", "domain_InternalApi")
-            });
+        {
+            // Configure client here
+        })
+        .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+        {
+            Credentials = new NetworkCredential("username_InternalApi", "password_InternalApi", "domain_InternalApi")
+        });
 
         services.AddHttpClient(Clients.PaymentProcessor,c =>
-            {
-                // Configure client here
-            })
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-            {
-                Credentials = new NetworkCredential("username_PaymentProcessor", "password_PaymentProcessor", "domain_PaymentProcessor")
-            });
+        {
+            // Configure client here
+        })
+        .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+        {
+            Credentials = new NetworkCredential("username_PaymentProcessor", "password_PaymentProcessor", "domain_PaymentProcessor")
+        });
 
         services.AddHttpClient(Clients.PaymentProcessorV2, c =>
-            {
-                // Configure client here
-            })
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-            {
-                Credentials = new NetworkCredential("username_PaymentProcessorV2", "password_PaymentProcessorV2", "domain_PaymentProcessorV2")
-                
-            });
+        {
+            // Configure client here
+        })
+        .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+        {
+            Credentials = new NetworkCredential("username_PaymentProcessorV2", "password_PaymentProcessorV2", "domain_PaymentProcessorV2")
+            
+        });
 
-        builder.Services.AddTransient<HttpMessageHandler>(sp =>
-            new NTLMHandler { InnerHandler = new HttpClientHandler() });
+        //builder.Services.AddTransient<HttpMessageHandler>(sp =>
+        //    new NTLMHandler { InnerHandler = new HttpClientHandler() });
 
         builder.Services.AddHttpClient(Clients.NTLM, client =>
         {
