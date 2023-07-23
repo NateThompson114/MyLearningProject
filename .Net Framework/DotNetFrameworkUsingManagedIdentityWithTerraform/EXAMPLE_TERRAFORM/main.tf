@@ -99,3 +99,9 @@ resource "azurerm_role_assignment" "storage_blob_role_assignment" {
   role_definition_name = data.azurerm_role_definition.storage_blob_data_reader.name
   principal_id         = azurerm_user_assigned_identity.qaautomation.principal_id
 }
+
+-- To Get Client Id
+output "qaautomation_client_id" {
+  description = "Client ID for the qaautomation Managed Identity"
+  value       = azurerm_user_assigned_identity.qaautomation.client_id
+}
