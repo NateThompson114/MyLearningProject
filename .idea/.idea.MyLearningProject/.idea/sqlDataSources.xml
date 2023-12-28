@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="dbb3ffe1-b228-44a0-802e-10969127e9b2" />
+          <option name="name" value="RestApi.Database" />
+          <option name="dbmsName" value="MSSQL" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/WebTechnologies/REST/RestApi.Database/dbo/Tables/Movie.sql" />
+              <option value="file://$PROJECT_DIR$/WebTechnologies/REST/RestApi.Database/dbo/Tables/Genre.sql" />
+              <option value="file://$PROJECT_DIR$/WebTechnologies/REST/RestApi.Database/dbo/Tables/MovieGenre.sql" />
+            </array>
+          </option>
+          <option name="remarks" value="Database Project" />
+          <option name="outPath" value="$PROJECT_DIR$/WebTechnologies/REST/RestApi.Database" />
+          <option name="codeStyleName" value="Visual Studio Database Project" />
+          <option name="outLayout" value="File per object by schema.groovy" />
+          <option name="scriptOptions">
+            <map>
+              <entry key="ConstraintContext" value="CONSTRAINT_IN_TABLE" />
+              <entry key="MsVsDdlCompatibility" value="1" />
+              <entry key="QualifyWithSchema" value="ALWAYS" />
+              <entry key="Reformat" value="1" />
+              <entry key="UseSemicolon" value="1" />
+            </map>
+          </option>
+        </State>
+      </list>
+    </option>
+  </component>
+</project>

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterceptorOAuthToNTLM", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFrameworkUsingManagedIdentityWithTerraform", ".Net Framework\DotNetFrameworkUsingManagedIdentityWithTerraform\DotNetFrameworkUsingManagedIdentityWithTerraform.csproj", "{03BED554-6637-4E3A-88EB-9CFF6A77AEF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocona", "ConsoleApplications\Cocona\Cocona.csproj", "{466E769A-08CC-4B03-AC06-06183CFC8320}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoconaConsoleApplication", "ConsoleApplications\CoconaConsoleApplication\CoconaConsoleApplication.csproj", "{466E769A-08CC-4B03-AC06-06183CFC8320}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
