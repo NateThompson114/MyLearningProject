@@ -13,9 +13,10 @@ using Microsoft.Extensions.Logging;
 
 var builder = CoconaApp.CreateBuilder();
 
+
 builder.Services.AddLogging(logging =>
 {
-    logging.AddFilter("System.Net.Http");
+    logging.AddFilter("System.Net.Http", LogLevel.Error); 
 });
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IWeatherService, OpenWeatherMapService>();
