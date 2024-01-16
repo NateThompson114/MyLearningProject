@@ -4,9 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f6935ea4-e912-4b6b-ac01-fbf087b181de</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AvidXchange.Enterprise.AvidPlatforms.AvidAuth.AspNetCore.JwtBearer" Version="1.0.1.561472" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.16.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
