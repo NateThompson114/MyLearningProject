@@ -35,7 +35,7 @@ namespace TwoAuthentications.Controllers
         }
         
         [HttpGet("GetWeatherForecastV2")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = BuilderExtensions.CustomBearerOptions.AvidAuth)]
         public IEnumerable<WeatherForecast> GetAzureAppConfig()
         {
             return GetWeatherForecasts();
