@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TwoAuthentications.Extensions;
 
 namespace TwoAuthentications.Controllers
 {
@@ -23,30 +24,24 @@ namespace TwoAuthentications.Controllers
         [HttpGet("GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return GetWeatherForecasts();
         }
 
-        [HttpGet("GetAvidAuthWeatherForecast")]
+        [HttpGet("GetWeatherForecastV1")]
+        [Authorize]
         public IEnumerable<WeatherForecast> GetAvidAuth()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = Random.Shared.Next(-20, 55),
-                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                })
-                .ToArray();
+            return GetWeatherForecasts();
+        }
+        
+        [HttpGet("GetWeatherForecastV2")]
+        [Authorize]
+        public IEnumerable<WeatherForecast> GetAzureAppConfig()
+        {
+            return GetWeatherForecasts();
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpGet("GetAzureAppConfigWeatherForecast")]
-        public IEnumerable<WeatherForecast> GetAzureAppConfig()
+        private static IEnumerable<WeatherForecast> GetWeatherForecasts()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
