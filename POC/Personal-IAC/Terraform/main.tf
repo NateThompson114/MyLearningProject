@@ -2,7 +2,7 @@
 
 provider "azurerm" {
   features {}
-  subscription_id = "${var.subscription_id}"
+  subscription_id = var.subscription_id
 }
 
 locals {
@@ -26,7 +26,6 @@ resource "azurerm_key_vault" "main" {
   resource_group_name         = azurerm_resource_group.main.name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   sku_name                    = "standard"
-
   purge_protection_enabled    = true
 }
 
@@ -36,7 +35,7 @@ resource "azurerm_key_vault_access_policy" "current_user" {
   object_id    = data.azurerm_client_config.current.object_id
 
   secret_permissions = [
-    "Get", "Set"
+    "Get", "List", "Set", "Delete", "Recover", "Backup", "Restore"
   ]
 }
 
@@ -58,11 +57,6 @@ resource "azurerm_eventhub" "main" {
 data "azurerm_eventhub_namespace" "main" {
   name                = azurerm_eventhub_namespace.main.name
   resource_group_name = azurerm_resource_group.main.name
-}
-
-output "eventhub_connection_string" {
-  value      = data.azurerm_eventhub_namespace.main.default_primary_connection_string
-  sensitive  = true
 }
 
 resource "azurerm_key_vault_secret" "eventhub_connection_string" {
@@ -94,18 +88,20 @@ resource "azurerm_key_vault_access_policy" "managed_identity" {
   ]
 }
 
-resource "azurerm_app_configuration_key" "eventhub_connection_string" {
-  configuration_store_id = azurerm_app_configuration.main.id
-  key                    = "EventHubConnectionString"
-  value                  = azurerm_key_vault_secret.eventhub_connection_string.value
-  content_type           = "text/plain"
-  tags = {
-    Environment = var.environment
-  }
-}
-
 resource "azurerm_role_assignment" "main" {
   principal_id         = azurerm_user_assigned_identity.main.principal_id
   role_definition_name = "Reader"
   scope                = azurerm_key_vault.main.id
+}
+
+resource "azurerm_app_configuration_key" "eventhub_connection_string" {
+  configuration_store_id = azurerm_app_configuration.main.id
+  key                    = "EventHubConnectionString"
+  value                  = "@Microsoft.KeyVault(VaultName=${azurerm_key_vault.main.name};SecretName=${azurerm_key_vault_secret.eventhub_connection_string.name})"
+  content_type           = "text/plain"
+  tags = {
+    Environment = var.environment
+  }
+
+  depends_on = [azurerm_role_assignment.main, azurerm_key_vault_access_policy.managed_identity]
 }
