@@ -11,6 +11,11 @@
 *.sln.docstates
 privateVars.tf
 .idea
+.terraform.*
+*.tfstate*
+tfplan
+terraform-provider-azurerm_*
+LICENSE.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
