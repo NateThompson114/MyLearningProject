@@ -27,3 +27,7 @@ variable "region" {
 variable "environment" {
   default = "Lowers"
 }
+
+variable "project" {
+  default = "LearningProject"
+}
