@@ -42,6 +42,12 @@ resource "azurerm_role_assignment" "app_config_data_reader" {
 #   tags = local.tags
 # }
 
+resource "azurerm_app_configuration_key" "test" {
+  configuration_store_id = azurerm_app_configuration.main.id
+  key                    = "EventHubName"
+  value                  = local.event_hub_name
+}
+
 resource "azurerm_app_configuration_key" "eventhub_connection_string" {
   configuration_store_id = azurerm_app_configuration.main.id
   key                    = "EventHubConnectionString"

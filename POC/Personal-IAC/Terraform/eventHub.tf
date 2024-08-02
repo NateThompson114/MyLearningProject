@@ -43,8 +43,6 @@ resource "azurerm_eventhub_consumer_group" "bssso" {
   namespace_name      = azurerm_eventhub_namespace.main.name
   eventhub_name       = azurerm_eventhub.main.name
   resource_group_name = azurerm_resource_group.main.name
-
-  tags = local.tags
 }
 
 resource "azurerm_eventhub_namespace_authorization_rule" "bssso_access_key" {
@@ -54,6 +52,4 @@ resource "azurerm_eventhub_namespace_authorization_rule" "bssso_access_key" {
 
   listen = true
   send   = true
-
-  tags = local.tags
 }
