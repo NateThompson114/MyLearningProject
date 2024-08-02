@@ -32,3 +32,9 @@ resource "azurerm_key_vault_secret" "eventhub_connection_string" {
   value        = azurerm_eventhub_namespace_authorization_rule.bssso_access_key.primary_connection_string
   key_vault_id = azurerm_key_vault.main.id  
 }
+
+resource "azurerm_key_vault_secret" "storage_account_connection_string" {
+  name         = "StorageAccountConnectionString"
+  value        = azurerm_storage_account.main.primary_connection_string
+  key_vault_id = azurerm_key_vault.main.id
+}

@@ -54,10 +54,30 @@ resource "azurerm_app_configuration_key" "eventhub_connection_string" {
   vault_key_reference    = azurerm_key_vault_secret.eventhub_connection_string.versionless_id
   type                   = "vault"
 
-  tags = local.tags
-
   depends_on = [
     azurerm_key_vault.main,
     azurerm_key_vault_secret.eventhub_connection_string
+  ]
+}
+
+resource "azurerm_app_configuration_key" "storage_container_name" {
+  configuration_store_id = azurerm_app_configuration.main.id
+  key                    = "StorageContainerName"
+  value                  = azurerm_storage_container.main.name
+
+  depends_on = [
+    azurerm_storage_container.main
+  ]
+}
+
+resource "azurerm_app_configuration_key" "storage_account_key" {
+  configuration_store_id = azurerm_app_configuration.main.id
+  key                    = "StorageAccountKey"
+  vault_key_reference    = azurerm_key_vault_secret.storage_account_connection_string.versionless_id
+  type                   = "vault"
+
+  depends_on = [
+    azurerm_key_vault.main,
+    azurerm_key_vault_secret.storage_account_connection_string,
   ]
 }
