@@ -25,6 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoconaConsoleApplication", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoAuthentications", "WebTechnologies\TwoAuthenticationTypes\TwoAuthentications\TwoAuthentications.csproj", "{3117B865-0741-407A-962E-FCD20F6393DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventer", "POC\EventHub\Eventer\Eventer.csproj", "{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventListenerFunctionApp", "POC\EventHub\EventListenerFunctionApp\EventListenerFunctionApp.csproj", "{F069211A-747F-42AF-B2A3-95CEF7E54B7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventerApi", "POC\EventHub\EventerApi\EventerApi.csproj", "{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +83,18 @@ Global
 		{3117B865-0741-407A-962E-FCD20F6393DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3117B865-0741-407A-962E-FCD20F6393DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3117B865-0741-407A-962E-FCD20F6393DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F069211A-747F-42AF-B2A3-95CEF7E54B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F069211A-747F-42AF-B2A3-95CEF7E54B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F069211A-747F-42AF-B2A3-95CEF7E54B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F069211A-747F-42AF-B2A3-95CEF7E54B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
