@@ -1,6 +1,7 @@
 using BillingApp.Api.Endpoints;
 using BillingApp.Api.Middleware;
 using BillingApp.Core.Entities;
+using BillingApp.Core.Enums;
 using BillingApp.Core.Interfaces;
 using BillingApp.Infrastructure.Data;
 using BillingApp.Infrastructure.Interceptor;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddKeyedScoped<List<AuditEntry>>("AuditEntries", (_, _) => new());
+builder.Services.AddKeyedScoped<List<AuditEntry>>(KeyedServices.AuditEntries, (_, _) => new());
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

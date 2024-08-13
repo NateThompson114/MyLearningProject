@@ -1,4 +1,5 @@
 ﻿using BillingApp.Core.Entities;
+using BillingApp.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,13 +8,11 @@ namespace BillingApp.Infrastructure.Interceptor;
 
 public class AuditInterceptor : SaveChangesInterceptor
 {
-    private readonly IServiceProvider _serviceProvider;
     private readonly List<AuditEntry> _auditEntries;
 
     public AuditInterceptor(IServiceProvider serviceProvider)
     {
-        _serviceProvider = serviceProvider;
-        _auditEntries = serviceProvider.GetRequiredKeyedService<List<AuditEntry>>("AuditEntries");
+        _auditEntries = serviceProvider.GetRequiredKeyedService<List<AuditEntry>>(KeyedServices.AuditEntries);
     }
     
     public override async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = new CancellationToken())
@@ -43,9 +42,6 @@ public class AuditInterceptor : SaveChangesInterceptor
             return await base.SavingChangesAsync(eventData, result, cancellationToken);            
         }
         
-        // using var scope = _serviceProvider.CreateScope();
-        // var auditEntriesList = scope.ServiceProvider.GetRequiredKeyedService<List<AuditEntry>>("AuditEntries");
-        // auditEntriesList.AddRange(auditEntries);
         _auditEntries.AddRange(auditEntries);
         
         return await base.SavingChangesAsync(eventData, result, cancellationToken);
@@ -61,22 +57,15 @@ public class AuditInterceptor : SaveChangesInterceptor
         
         var endTime = DateTime.UtcNow;
         
-        // using var scope = _serviceProvider.CreateScope();
-        // var auditEntriesList = scope.ServiceProvider.GetRequiredKeyedService<List<AuditEntry>>("AuditEntries");
-
-        // foreach (var auditEntry in auditEntriesList)
         foreach (var auditEntry in _auditEntries)
         {
             auditEntry.EndTimeUtc = endTime;
             auditEntry.Succeeded = true;
         }
         
-        // if(auditEntriesList.Count > 0)
         if(_auditEntries.Count > 0)
         {
-            // eventData.Context.Set<AuditEntry>().AddRange(auditEntriesList);
             eventData.Context.Set<AuditEntry>().AddRange(_auditEntries);
-            // auditEntriesList.Clear();
             _auditEntries.Clear();
             await eventData.Context.SaveChangesAsync(cancellationToken);
         }
@@ -96,10 +85,6 @@ public class AuditInterceptor : SaveChangesInterceptor
 
         var endTime = DateTime.UtcNow;
 
-        // using var scope = _serviceProvider.CreateScope();
-        // var auditEntriesList = scope.ServiceProvider.GetRequiredKeyedService<List<AuditEntry>>("AuditEntries");
-
-        // foreach (var auditEntry in auditEntriesList)
         foreach (var auditEntry in _auditEntries)
         {
             auditEntry.EndTimeUtc = endTime;
@@ -107,7 +92,6 @@ public class AuditInterceptor : SaveChangesInterceptor
             auditEntry.ErrorMessage = eventData.Exception.ToString();
         }
 
-        // if (auditEntriesList.Count > 0)
         if (_auditEntries.Count > 0)
         {
             // Create a new DbContext to save the audit entries
@@ -116,9 +100,7 @@ public class AuditInterceptor : SaveChangesInterceptor
             optionsBuilder.UseSqlServer(eventData.Context.Database.GetConnectionString());
             await using var newContext = new DbContext(optionsBuilder.Options);
 
-            // newContext.Set<AuditEntry>().AddRange(auditEntriesList);
             newContext.Set<AuditEntry>().AddRange(_auditEntries);
-            // auditEntriesList.Clear();
             _auditEntries.Clear();
             
             try
