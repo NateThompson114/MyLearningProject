@@ -23,13 +23,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFrameworkUsingManaged
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoconaConsoleApplication", "ConsoleApplications\CoconaConsoleApplication\CoconaConsoleApplication.csproj", "{466E769A-08CC-4B03-AC06-06183CFC8320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoAuthentications", "WebTechnologies\TwoAuthenticationTypes\TwoAuthentications\TwoAuthentications.csproj", "{3117B865-0741-407A-962E-FCD20F6393DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoAuthentications", "WebTechnologies\TwoAuthenticationTypes\TwoAuthentications\TwoAuthentications.csproj", "{3117B865-0741-407A-962E-FCD20F6393DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventer", "POC\EventHub\Eventer\Eventer.csproj", "{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventer", "POC\EventHub\Eventer\Eventer.csproj", "{44931183-7EB7-4C06-BAD2-AB9C7B9F53DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventListenerFunctionApp", "POC\EventHub\EventListenerFunctionApp\EventListenerFunctionApp.csproj", "{F069211A-747F-42AF-B2A3-95CEF7E54B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventListenerFunctionApp", "POC\EventHub\EventListenerFunctionApp\EventListenerFunctionApp.csproj", "{F069211A-747F-42AF-B2A3-95CEF7E54B7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventerApi", "POC\EventHub\EventerApi\EventerApi.csproj", "{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventerApi", "POC\EventHub\EventerApi\EventerApi.csproj", "{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingApp", "BillingApp", "{BCF8BB57-589F-4796-A450-B55E2B4BCC6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillingApp.Core", "DatabaseAuditing\EfCore\BillingApp\BillingApp.Core\BillingApp.Core.csproj", "{9916040B-5DA1-48F0-A8DC-224A9FD35AA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillingApp.Infrastructure", "DatabaseAuditing\EfCore\BillingApp\BillingApp.Infrastructure\BillingApp.Infrastructure.csproj", "{120CBCB4-81AC-4F38-A7B6-054A8007FDAA}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BillingApp.Database", "DatabaseAuditing\EfCore\BillingApp\BillingApp.Database\BillingApp.Database.sqlproj", "{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingApp.Api", "DatabaseAuditing\EfCore\BillingApp\BillingApp.Api\BillingApp.Api.csproj", "{85A78CA0-D39E-45A2-BCD7-E7C84285CE47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,9 +105,33 @@ Global
 		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5264BEC1-9CBD-4A5D-99D5-1BBAF16821A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9916040B-5DA1-48F0-A8DC-224A9FD35AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9916040B-5DA1-48F0-A8DC-224A9FD35AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9916040B-5DA1-48F0-A8DC-224A9FD35AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9916040B-5DA1-48F0-A8DC-224A9FD35AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120CBCB4-81AC-4F38-A7B6-054A8007FDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120CBCB4-81AC-4F38-A7B6-054A8007FDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120CBCB4-81AC-4F38-A7B6-054A8007FDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120CBCB4-81AC-4F38-A7B6-054A8007FDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{85A78CA0-D39E-45A2-BCD7-E7C84285CE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85A78CA0-D39E-45A2-BCD7-E7C84285CE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85A78CA0-D39E-45A2-BCD7-E7C84285CE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85A78CA0-D39E-45A2-BCD7-E7C84285CE47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9916040B-5DA1-48F0-A8DC-224A9FD35AA0} = {BCF8BB57-589F-4796-A450-B55E2B4BCC6E}
+		{120CBCB4-81AC-4F38-A7B6-054A8007FDAA} = {BCF8BB57-589F-4796-A450-B55E2B4BCC6E}
+		{0A78A0AF-5EAF-476B-AFF9-63B9DB1AB038} = {BCF8BB57-589F-4796-A450-B55E2B4BCC6E}
+		{85A78CA0-D39E-45A2-BCD7-E7C84285CE47} = {BCF8BB57-589F-4796-A450-B55E2B4BCC6E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8299C23-390A-4F40-B1F0-223153817DF8}
