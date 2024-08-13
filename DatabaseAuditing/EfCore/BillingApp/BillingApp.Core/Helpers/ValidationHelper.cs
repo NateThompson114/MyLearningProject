@@ -1,15 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BillingApp.Core.Common;
 
 namespace BillingApp.Core.Helpers;
 
 public static class ValidationHelper
 {
-    public static (bool IsValid, List<string> ErrorMessages) Validate<T>(T obj)
+    public static ResultType<T> Validate<T>(T obj)
     {
         var validationContext = new ValidationContext(obj);
         var validationResults = new List<ValidationResult>();
-        var isValid = Validator.TryValidateObject(obj, validationContext, validationResults, true);
+        bool isValid = Validator.TryValidateObject(obj, validationContext, validationResults, true);
 
-        return (isValid, validationResults.Select(r => r.ErrorMessage).ToList());
+        if (isValid)
+        {
+            return ResultType<T>.Success(obj);
+        }
+        else
+        {
+            var errors = validationResults.Select(r => r.ErrorMessage).ToList();
+            return ResultType<T>.Failure(errors);
+        }
     }
 }

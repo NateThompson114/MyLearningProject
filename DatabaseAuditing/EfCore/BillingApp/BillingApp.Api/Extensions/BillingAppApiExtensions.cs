@@ -11,52 +11,63 @@ public static class BillingAppApiExtensions
     {
         app.MapPost("/api/bills", async (BillDto billDto, IBillRepository repo) =>
         {
-            var (isValid, errorMessages) = ValidationHelper.Validate(billDto);
-            if (!isValid)
+            var validationResult = ValidationHelper.Validate(billDto);
+            if (!validationResult.IsSuccess)
             {
-                return Results.BadRequest(new { Errors = errorMessages });
+                return Results.BadRequest(new { Errors = validationResult.Errors });
             }
 
             var bill = billDto.ToEntity();
-            var id = await repo.AddAsync(bill);
-            return Results.Created($"/api/bills/{id}", bill.ToDto());
+            var result = await repo.AddAsync(bill);
+            return result.IsSuccess
+                ? Results.Created($"/api/bills/{result.Value}", bill.ToDto())
+                : Results.BadRequest(new { Error = result.ErrorMessage });
         });
 
         app.MapPut("/api/bills/{id}", async (int id, BillDto billDto, IBillRepository repo) =>
         {
-            var (isValid, errorMessages) = ValidationHelper.Validate(billDto);
-            if (!isValid)
+            var validationResult = ValidationHelper.Validate(billDto);
+            if (!validationResult.IsSuccess)
             {
-                return Results.BadRequest(new { Errors = errorMessages });
+                return Results.BadRequest(new { Errors = validationResult.Errors });
             }
 
-            var existingBill = await repo.GetByIdAsync(id);
-            if (existingBill == null)
+            var existingBillResult = await repo.GetByIdAsync(id);
+            if (!existingBillResult.IsSuccess)
             {
-                return Results.NotFound();
+                return Results.NotFound(new { Error = existingBillResult.ErrorMessage });
             }
 
+            var existingBill = existingBillResult.Value;
             existingBill.UpdateEntityFromDto(billDto);
-            await repo.UpdateAsync(existingBill);
-            return Results.NoContent();
+            var updateResult = await repo.UpdateAsync(existingBill);
+            return updateResult.IsSuccess
+                ? Results.NoContent()
+                : Results.BadRequest(new { Error = updateResult.ErrorMessage });
         });
 
         app.MapGet("/api/bills/{id}", async (int id, IBillRepository repo) =>
         {
-            var bill = await repo.GetByIdAsync(id);
-            return bill != null ? Results.Ok(bill) : Results.NotFound();
+            var result = await repo.GetByIdAsync(id);
+            return result.IsSuccess
+                ? Results.Ok(result.Value)
+                : Results.NotFound(new { Error = result.ErrorMessage });
         });
 
         app.MapGet("/api/bills", async (IBillRepository repo) =>
         {
-            var bills = await repo.GetAllAsync();
-            return Results.Ok(bills);
+            var result = await repo.GetAllAsync();
+            return result.IsSuccess
+                ? Results.Ok(result.Value)
+                : Results.BadRequest(new { Error = result.ErrorMessage });
         });
-        
+
         app.MapDelete("/api/bills/{id}", async (int id, IBillRepository repo) =>
         {
-            await repo.DeleteAsync(id);
-            return Results.NoContent();
+            var result = await repo.DeleteAsync(id);
+            return result.IsSuccess
+                ? Results.NoContent()
+                : Results.NotFound(new { Error = result.ErrorMessage });
         });
     }
 }
