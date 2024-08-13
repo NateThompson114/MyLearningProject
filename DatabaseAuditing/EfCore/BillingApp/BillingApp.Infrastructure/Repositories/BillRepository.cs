@@ -5,45 +5,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BillingApp.Infrastructure.Repositories;
 
-public class BillRepository : IBillRepository
+public class BillRepository(AppDbContext context) : IBillRepository
 {
-    private readonly AppDbContext _context;
+    public async Task<IEnumerable<Bill?>> GetAllAsync() => 
+        await context.Bills.ToListAsync();
 
-    public BillRepository(AppDbContext context)
-    {
-        _context = context;
-    }
-
-    public async Task<IEnumerable<Bill>> GetAllAsync()
-    {
-        return await _context.Bills.ToListAsync();
-    }
-
-    public async Task<Bill> GetByIdAsync(int id)
-    {
-        return await _context.Bills.FindAsync(id);
-    }
+    public async Task<Bill?> GetByIdAsync(int id) => 
+        await context.Bills.FindAsync(id);
 
     public async Task<int> AddAsync(Bill bill)
     {
-        _context.Bills.Add(bill);
-        await _context.SaveChangesAsync();
+        context.Bills.Add(bill);
+        await context.SaveChangesAsync();
         return bill.Id;
     }
 
     public async Task UpdateAsync(Bill bill)
     {
-        _context.Bills.Update(bill);
-        await _context.SaveChangesAsync();
+        context.Bills.Update(bill);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(int id)
     {
-        var bill = await _context.Bills.FindAsync(id);
+        var bill = await context.Bills.FindAsync(id);
         if (bill != null)
         {
-            _context.Bills.Remove(bill);
-            await _context.SaveChangesAsync();
+            context.Bills.Remove(bill);
+            await context.SaveChangesAsync();
         }
     }
 }
