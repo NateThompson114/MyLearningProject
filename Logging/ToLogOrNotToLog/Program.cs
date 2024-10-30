@@ -4,8 +4,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLogging();
 
 var app = builder.Build();
+
+ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("Hello, world!");
+// Returns
+//  info: Program[0] --> Program is the log category and is set to the type of the Program class, so you set the category by using the type of the class
+//  Hello, world!
+//
+// There are multiple log levels, such as Trace, Debug, Information, Warning, Error, Critical, and None. The default log level is Information.
+// The log level can be set in the appsettings.json file or in the code.
+//  trace is the most detailed log level, and none is the least detailed log level.
+//  trace < debug < information < warning < error < critical < none
+//  trace can also be used to log sensitive information, such as passwords, and should not be used in production.
+//
+// LogLevel logLevel = LogLevel.Information; // <-- Uncomment to look at the log level enum
+// LoggerExtensions.LogTrace(logger, "This is a trace log message."); // <-- Uncomment to look at the log extension methods
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
