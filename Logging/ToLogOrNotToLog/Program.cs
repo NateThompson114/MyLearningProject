@@ -4,11 +4,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddLogging();
+// builder.Services.AddLogging();
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    // builder.AddConsole();
+    builder.AddJsonConsole();
+});
+builder.Services.AddSingleton(loggerFactory);
 
 var app = builder.Build();
 
-ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
+// ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
+ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
 logger.LogInformation("Hello, world!");
 // Returns
 //  info: Program[0] --> Program is the log category and is set to the type of the Program class, so you set the category by using the type of the class
@@ -22,6 +29,15 @@ logger.LogInformation("Hello, world!");
 //
 // LogLevel logLevel = LogLevel.Information; // <-- Uncomment to look at the log level enum
 // LoggerExtensions.LogTrace(logger, "This is a trace log message."); // <-- Uncomment to look at the log extension methods
+
+
+// Bad and good (Structured Logging) examples of logging
+var paymentId = 987654321;
+logger.LogInformation($"Payment Id: {paymentId}");                  // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}} 
+logger.LogInformation("Payment Id: " + paymentId);                  // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}}
+logger.LogInformation(string.Format("Payment Id: {0}", paymentId)); // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}}
+logger.LogInformation("Payment Id: {PaymentId}", paymentId);        // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","PaymentId":987654321,"{OriginalFormat}":"Payment Id: {PaymentId}"}}
+
 
 
 // Configure the HTTP request pipeline.
