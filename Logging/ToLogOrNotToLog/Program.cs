@@ -1,3 +1,6 @@
+using ToLogOrNotToLog.Examples;
+using ToLogOrNotToLog.Models.Enum;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,13 +33,9 @@ logger.LogInformation("Hello, world!");
 // LogLevel logLevel = LogLevel.Information; // <-- Uncomment to look at the log level enum
 // LoggerExtensions.LogTrace(logger, "This is a trace log message."); // <-- Uncomment to look at the log extension methods
 
-
-// Bad and good (Structured Logging) examples of logging
-var paymentId = 987654321;
-logger.LogInformation($"Payment Id: {paymentId}");                  // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}} 
-logger.LogInformation("Payment Id: " + paymentId);                  // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}}
-logger.LogInformation(string.Format("Payment Id: {0}", paymentId)); // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","{OriginalFormat}":"Payment Id: 987654321"}}
-logger.LogInformation("Payment Id: {PaymentId}", paymentId);        // {"EventId":0,"LogLevel":"Information","Category":"Program","Message":"Payment Id: 987654321","State":{"Message":"Payment Id: 987654321","PaymentId":987654321,"{OriginalFormat}":"Payment Id: {PaymentId}"}}
+logger
+    .StructuredLoggingExample()
+    .EventIdExample();
 
 
 
