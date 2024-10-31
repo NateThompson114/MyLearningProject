@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingApp.Api", "DatabaseA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToLogOrNotToLog", "Logging\ToLogOrNotToLog\ToLogOrNotToLog.csproj", "{03435634-DF9C-4753-8084-B882CD85B12B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHostAndExplicitLogging", "Logging\GenericHostAndExplicitLogging\GenericHostAndExplicitLogging.csproj", "{932297D6-65DC-4F78-ADF5-12ECDD4343CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{03435634-DF9C-4753-8084-B882CD85B12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03435634-DF9C-4753-8084-B882CD85B12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03435634-DF9C-4753-8084-B882CD85B12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
