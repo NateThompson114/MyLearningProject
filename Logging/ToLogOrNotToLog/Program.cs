@@ -9,19 +9,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // builder.Services.AddLogging();
 
-builder.Logging.ClearProviders(); // <-- This all works the same even in a web application, with the same customizations. This would clear and then you could add only what you want.
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    // builder.AddConsole();
-    builder.AddJsonConsole();
-});
-builder.Services.AddSingleton(loggerFactory);
+// builder.Logging.ClearProviders(); // <-- This all works the same even in a web application, with the same customizations. This would clear and then you could add only what you want.
+
+// using var loggerFactory = LoggerFactory.Create(builder =>
+// {
+//     builder.AddConsole();
+//     // builder.AddJsonConsole();
+// });
+// builder.Services.AddSingleton(loggerFactory);
 
 var app = builder.Build();
 
-// ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
-ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
-logger.LogInformation("Hello, world!");
+// ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
+// logger.LogInformation("Hello, world!");
 // Returns
 //  info: Program[0] --> Program is the log category and is set to the type of the Program class, so you set the category by using the type of the class
 //  Hello, world!
@@ -35,6 +35,7 @@ logger.LogInformation("Hello, world!");
 // LogLevel logLevel = LogLevel.Information; // <-- Uncomment to look at the log level enum
 // LoggerExtensions.LogTrace(logger, "This is a trace log message."); // <-- Uncomment to look at the log extension methods
 
+ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger
     .StructuredLoggingExample()
     .EventIdExample();
