@@ -38,8 +38,8 @@ var app = builder.Build();
 ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger
     .StructuredLoggingExample()
-    .EventIdExample();
-
+    .EventIdExample()
+    .ExceptionExample();
 
 
 // Configure the HTTP request pipeline.

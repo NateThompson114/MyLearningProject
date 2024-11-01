@@ -32,4 +32,19 @@ public static class Examples
 
         return logger;
     }
+
+    public static ILogger ExceptionExample(this ILogger logger)
+    {
+        try
+        {
+            throw new Exception("This is an exception.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogInformation(ex, "This is an exception in a log message, but more importantly its not in a error, because all log methods have a exception parameter.");
+        }
+        
+        return logger;
+    }
+    
 }
