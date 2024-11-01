@@ -1,4 +1,5 @@
-﻿using ToLogOrNotToLog.Models.Enum;
+﻿using Microsoft.Extensions.Logging.Console;
+using ToLogOrNotToLog.Models.Enum;
 
 namespace ToLogOrNotToLog.Examples;
 
@@ -46,5 +47,27 @@ public static class Examples
         
         return logger;
     }
-    
+
+    public static ILoggingBuilder FilterExample(this ILoggingBuilder builder)
+    {
+        // This is how you can filter logs, but it is not recommended to do it this way, because it is not very flexible.
+        // This is generally used if you are a provider and want to filter logs you will provide.
+        // builder.AddFilter((provider, category, logLevel) =>
+        // {
+        //     return provider!.Contains("Console")
+        //         && category!.Contains("Microsoft.Extensions.Hosting.Internal.Host")
+        //         && logLevel >= LogLevel.Information;
+        // });
+        
+        builder
+            .AddFilter("System", LogLevel.Debug)
+            .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Warning)
+            .AddFilter("Program", LogLevel.Warning)
+            ;
+        
+            
+        
+        return builder;
+    }
+
 }
