@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // builder.Services.AddLogging();
+
+builder.Logging.ClearProviders(); // <-- This all works the same even in a web application, with the same customizations. This would clear and then you could add only what you want.
 using var loggerFactory = LoggerFactory.Create(builder =>
 {
     // builder.AddConsole();

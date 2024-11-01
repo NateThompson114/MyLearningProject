@@ -30,6 +30,11 @@ using var loggerFactory = LoggerFactory.Create(builder =>
             Indented = true
         };
     });
+
+    builder.ClearProviders(); //<-- This will clear all the providers, so you can add the ones you want, but it depends on the order you add them. This cleared out the JsonConsole provider.
+
+    builder.AddSystemdConsole();
+    
     builder.SetMinimumLevel(LogLevel.Debug);
 });
 
