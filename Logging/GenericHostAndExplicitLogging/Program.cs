@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
 
 // //! This is great for services or long-running headless applications.
@@ -20,9 +21,19 @@ using Microsoft.Extensions.Logging;
 //! The logger factory is used to create loggers. Knowing this, you can create a custom logger, and handle logging in 99% of the cases.
 using var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddJsonConsole();
+    builder.AddJsonConsole(options =>
+    {
+        options.IncludeScopes = false;
+        options.TimestampFormat = "HH:mm:ss";
+        options.JsonWriterOptions = new JsonWriterOptions
+        {
+            Indented = true
+        };
+    });
+    builder.SetMinimumLevel(LogLevel.Debug);
 });
 
 ILogger logger = loggerFactory.CreateLogger<Program>();
 
+logger.LogDebug("This is a debug log message.");
 logger.LogInformation("Hello, world!");
