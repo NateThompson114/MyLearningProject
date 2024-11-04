@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogExampleProject", "Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogMinimalApi", "Logging\SerilogMinimalApi\SerilogMinimalApi.csproj", "{984C1E06-D01B-4E26-BD01-ED4DC0C9B5B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogWebApiDiAndProvider", "Logging\SerilogWebApiDiAndProvider\SerilogWebApiDiAndProvider.csproj", "{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{984C1E06-D01B-4E26-BD01-ED4DC0C9B5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{984C1E06-D01B-4E26-BD01-ED4DC0C9B5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{984C1E06-D01B-4E26-BD01-ED4DC0C9B5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
