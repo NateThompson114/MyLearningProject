@@ -9,4 +9,9 @@ var logger = new LoggerConfiguration()
     .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit:true )
     .CreateLogger();
 
-logger.Information("Hello, world!"); 
+Log.Logger = logger;
+
+logger.Information("Hello, world!");
+
+//This is important to flush the log and close the logger especially if you are using a file sink.
+Log.CloseAndFlush();
