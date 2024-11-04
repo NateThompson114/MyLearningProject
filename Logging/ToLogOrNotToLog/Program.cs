@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging.ApplicationInsights;
+using ToLogOrNotToLog;
 using ToLogOrNotToLog.Examples;
 using ToLogOrNotToLog.Models.Enum;
 
@@ -14,7 +15,8 @@ builder.Logging.ClearProviders();
 
 if(builder.Environment.IsDevelopment())
 {
-    builder.Logging.AddConsole();
+    // builder.Logging.AddConsole();
+    builder.Logging.AddProvider(new NatesLoggerProvider());
 }
 else
 {
