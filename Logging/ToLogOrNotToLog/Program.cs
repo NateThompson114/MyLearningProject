@@ -67,7 +67,9 @@ ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger
     .StructuredLoggingExample()
     .EventIdExample()
-    .ExceptionExample();
+    .ExceptionExample()
+    .LogMessageTemplateFormattingExample()
+    .LogMessageWithComplexObjectExample();
 
 
 // Configure the HTTP request pipeline.

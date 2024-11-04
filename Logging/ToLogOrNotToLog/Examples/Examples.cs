@@ -70,4 +70,36 @@ public static class Examples
         return builder;
     }
 
+    public static ILogger LogMessageTemplateFormattingExample(this ILogger logger)
+    {
+        var paymentId = 123456789;
+        var paymentAmount = 123.45;
+        var paymentDate = DateTime.Now;
+        
+        logger.LogInformation("Payment Id: {PaymentId:D}, Payment Amount: ${PaymentAmount:C}, Payment Date: {PaymentDate:F}", paymentId, paymentAmount, paymentDate);
+
+        return logger;
+    }
+    
+    public static ILogger LogMessageWithComplexObjectExample(this ILogger logger)
+    {
+        var paymentData = new PaymentData
+        {
+            PaymentId = 123456789,
+            PaymentAmount = 123.45,
+            PaymentDate = DateTime.Now
+        };
+        
+        logger.LogInformation("Payment Id: {PaymentId:D}, Payment Amount: ${PaymentAmount:C}, Payment Date: {PaymentDate:F}", paymentData.PaymentId, paymentData.PaymentAmount, paymentData.PaymentDate);
+        
+        return logger;
+    }
+
+    class PaymentData
+    {
+        public int PaymentId { get; set; }
+        public double PaymentAmount { get; set; }
+        public DateTime PaymentDate { get; set; }
+    }
+
 }
