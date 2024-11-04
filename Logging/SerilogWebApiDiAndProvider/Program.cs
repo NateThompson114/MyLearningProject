@@ -1,6 +1,7 @@
 using Serilog;
 using Serilog.Context;
 using Serilog.Formatting.Json;
+using SerilogTimings.Extensions;
 using SerilogWebApiDiAndProvider.AdvancedObjects;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +53,18 @@ var payment = new Payment
     UserId = Guid.NewGuid(),
     Timestamp = DateTime.Now
 };
+
+using (logger.TimeOperation("Processing payment with {PaymentId}", payment.PaymentId))
+{
+    await Task.Delay(50);
+    logger.Information("Received payment by user with id {UserId}", payment.UserId);
+}
+
+var operation = logger.BeginOperation("Processing payment with {PaymentId}", payment.PaymentId);
+await Task.Delay(50);
+logger.Information("Received payment by user with id {UserId}", payment.UserId);
+// operation.Complete(); // This will complete the operation and log the duration of the operation.
+operation.Abandon(); // Now if something goes wrong, we can abandon the operation and it will log the duration until abandoned as a warning.
 
 // By using the LogContext.PushProperty() method, we can add properties to the log context for the duration of the using block.
 // Your sink has to be compatible with it, which is why we added the json formatter to the console sink, but this will now include the PaymentId in the log context.
