@@ -29,6 +29,7 @@ if(builder.Environment.IsDevelopment())
         };
         jBuilder.TimestampFormat = "yyyy-MM-dd HH:mm:ss.fff zzz";
     });
+    
 }
 else
 {
@@ -90,6 +91,14 @@ using (logger.BeginTimedOperation("Handling new Payment"))
     // .LogMessageWithComplexObjectExample()
     // .LogMessageScopeExample();
 
+// Logger Provider from the DI from Microsoft Web Applications support hot reloading, if you change the default level in appsettings.json, it will change the level of the logger and allow you to see the changes in real-time.
+logger.LogWarning("Starting a example of what the minimum level does and how to hot reload it.");
+
+while (true)
+{
+    logger.LogInformation("This is repeated every second.");
+    await Task.Delay(1000);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
