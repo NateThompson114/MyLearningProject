@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHostAndExplicitLoggi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationInsightsToAConsoleApp", "Logging\ApplicationInsightsToAConsoleApp\ApplicationInsightsToAConsoleApp.csproj", "{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog", "Logging\Serilog\Serilog.csproj", "{971B618B-24B5-4C47-B219-72F60880EC8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogDemoProject", "Logging\SerilogDemoProject\SerilogDemoProject.csproj", "{971B618B-24B5-4C47-B219-72F60880EC8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
