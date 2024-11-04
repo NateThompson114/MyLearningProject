@@ -1,3 +1,4 @@
+using Destructurama;
 using Serilog;
 using Serilog.Context;
 using Serilog.Formatting.Json;
@@ -15,12 +16,13 @@ var logger = new LoggerConfiguration()
     // .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning) // You can do this as a manual override, but it's not recommended.
     .WriteTo.Console(new JsonFormatter())
     .Enrich.FromLogContext()
-    .Destructure.ByTransforming<Payment>(x => new
-    {
-        // This will destructure the object into a new object with the properties PaymentId and UserId.
-        x.PaymentId,
-        x.UserId
-    })
+    // .Destructure.ByTransforming<Payment>(x => new
+    // {
+    //     // This will destructure the object into a new object with the properties PaymentId and UserId.
+    //     x.PaymentId,
+    //     x.UserId
+    // })
+    .Destructure.UsingAttributes()
     .ReadFrom.Configuration(builder.Configuration) // This will read the configuration from the appsettings.json file, so we no longer need to provide the configuration manually.
     .CreateLogger();
 Log.Logger = logger;
@@ -51,6 +53,7 @@ var payment = new Payment
 {
     PaymentId = 1,
     UserId = Guid.NewGuid(),
+    Email = "user@email.com",
     Timestamp = DateTime.Now
 };
 
