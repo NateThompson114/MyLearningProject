@@ -36,6 +36,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", (Serilog.ILogger logger) =>
     {
+        // The problem if you will see both loggers in here, you will get the serilog but you will also see the Microsoft.Extensions.Logging.ILogger.
         logger.Information("Hello from the endpoint.");
         var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
