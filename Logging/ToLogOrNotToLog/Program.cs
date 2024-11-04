@@ -1,3 +1,5 @@
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 using ToLogOrNotToLog;
 using ToLogOrNotToLog.Examples;
@@ -16,7 +18,16 @@ builder.Logging.ClearProviders();
 if(builder.Environment.IsDevelopment())
 {
     // builder.Logging.AddConsole();
-    builder.Logging.AddProvider(new NatesLoggerProvider());
+    // builder.Logging.AddProvider(new NatesLoggerProvider());
+    builder.Logging.AddJsonConsole(jBuilder =>
+    {
+        jBuilder.IncludeScopes = true;
+        jBuilder.JsonWriterOptions = new JsonWriterOptions
+        {
+            Indented = true
+        };
+        jBuilder.TimestampFormat = "yyyy-MM-dd HH:mm:ss.fff zzz";
+    });
 }
 else
 {
@@ -65,11 +76,12 @@ var app = builder.Build();
 
 ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger
-    .StructuredLoggingExample()
-    .EventIdExample()
-    .ExceptionExample()
-    .LogMessageTemplateFormattingExample()
-    .LogMessageWithComplexObjectExample();
+    // .StructuredLoggingExample()
+    // .EventIdExample()
+    // .ExceptionExample()
+    // .LogMessageTemplateFormattingExample()
+    // .LogMessageWithComplexObjectExample()
+    .LogMessageScopeExample();
 
 
 // Configure the HTTP request pipeline.

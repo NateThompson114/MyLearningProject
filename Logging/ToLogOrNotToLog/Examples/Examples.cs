@@ -90,7 +90,31 @@ public static class Examples
             PaymentDate = DateTime.Now
         };
         
-        logger.LogInformation("Payment Id: {PaymentId:D}, Payment Amount: ${PaymentAmount:C}, Payment Date: {PaymentDate:F}", paymentData.PaymentId, paymentData.PaymentAmount, paymentData.PaymentDate);
+        logger.LogInformation("Payment Id: {PaymentId}, Payment Amount: ${PaymentAmount:C}, Payment Date: {PaymentDate}", paymentData.PaymentId, paymentData.PaymentAmount, paymentData.PaymentDate);
+        
+        return logger;
+    }
+
+    public static ILogger LogMessageScopeExample(this ILogger logger)
+    {
+        var paymentData = new PaymentData
+        {
+            PaymentId = 123456789,
+            PaymentAmount = 123.45,
+            PaymentDate = DateTime.Now
+        };
+        
+        using (logger.BeginScope("Payment Id: {PaymentId}", paymentData.PaymentId))
+        {
+            try
+            {
+                logger.LogInformation("New payment for ${Total}", paymentData.PaymentAmount);
+            }
+            finally
+            {
+                logger.LogInformation("Payment processing completed on {PaymentDate}", paymentData.PaymentDate);
+            }
+        }
         
         return logger;
     }
