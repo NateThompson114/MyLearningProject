@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToLogOrNotToLog", "Logging\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHostAndExplicitLogging", "Logging\GenericHostAndExplicitLogging\GenericHostAndExplicitLogging.csproj", "{932297D6-65DC-4F78-ADF5-12ECDD4343CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationInsightsToAConsoleApp", "Logging\ApplicationInsightsToAConsoleApp\ApplicationInsightsToAConsoleApp.csproj", "{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932297D6-65DC-4F78-ADF5-12ECDD4343CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D065A5B-6B44-4B2C-A3F7-D505730D28BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

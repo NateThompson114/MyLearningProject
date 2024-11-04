@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using ToLogOrNotToLog.Examples;
 using ToLogOrNotToLog.Models.Enum;
 
@@ -8,8 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Logging
-    .FilterExample();
+// Application Insights is a asynchronous logger, so it will not block the main thread, however that also means it takes time for logs to show up in application insights.
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: teleConfig =>
+        teleConfig.ConnectionString = "InstrumentationKey=331b798e-ba02-4c30-82c6-6bb30fe33afe;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=e1360525-7aef-4c2e-8df6-6f5ed506c2b0",
+    configureApplicationInsightsLoggerOptions: _ => { });
+
+// builder.Logging.AddFilter<ApplicationInsightsLogger>(filter => { });
+
+// builder.Logging
+//     .FilterExample();
 
 // builder.Logging.ClearProviders(); // <-- This all works the same even in a web application, with the same customizations. This would clear and then you could add only what you want.
 
