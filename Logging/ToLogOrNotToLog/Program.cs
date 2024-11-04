@@ -3,6 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 using ToLogOrNotToLog;
 using ToLogOrNotToLog.Examples;
+using ToLogOrNotToLog.Extensions;
 using ToLogOrNotToLog.Models.Enum;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,13 +76,19 @@ var app = builder.Build();
 #endregion
 
 ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
-logger
+
+using (logger.BeginTimedOperation("Handling new Payment"))
+{
+    logger
+        .LogMessageScopeExample();
+}
+// logger
     // .StructuredLoggingExample()
     // .EventIdExample()
     // .ExceptionExample()
     // .LogMessageTemplateFormattingExample()
     // .LogMessageWithComplexObjectExample()
-    .LogMessageScopeExample();
+    // .LogMessageScopeExample();
 
 
 // Configure the HTTP request pipeline.
