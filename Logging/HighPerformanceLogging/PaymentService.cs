@@ -11,11 +11,11 @@ public class PaymentService
     // The event id is a struct so no memory allocation
     // The format string is a literal, so there is no real overhead
     // Finally the LogLevel is a enum or value type
-    private static readonly Action<ILogger, string, decimal, int, Exception?> LogPayment =
-        LoggerMessage.Define<string, decimal, int>(
-            LogLevel.Information,
-            new EventId(1001, nameof(CreatePayment)),
-            "Customer {email} purchased product {productId} for {amount}");
+    // private static readonly Action<ILogger, string, decimal, int, Exception?> LogPayment =
+    //     LoggerMessage.Define<string, decimal, int>(
+    //         LogLevel.Information,
+    //         new EventId(1001, nameof(CreatePayment)),
+    //         "Customer {email} purchased product {productId} for {amount}");
 
     public PaymentService(ILogger<PaymentService> logger)
     {
@@ -35,6 +35,10 @@ public class PaymentService
         // _logger.LogInformation("Customer {email} purchased product {productId} for {amount}", email, productId, amount);
         
         // PaymentService.LogPayment = LoggerMessage.Define<string, Decimal, int>(LogLevel.Information, new EventId(1001, "CreatePayment"), "Customer {email} purchased product {productId} for {amount}");
-        LogPayment(_logger, email, amount, productId, null);
+        // LogPayment(_logger, email, amount, productId, null);
+        
+        // Doing this is the same as the above method where we created a static, and defined the parameters to avoid boxing,
+        // but uses the source generator to define everything you would need, and in a as close to bare metal as C# gets
+        _logger.LogPaymentCreation(email,amount,productId);
     }
 }
