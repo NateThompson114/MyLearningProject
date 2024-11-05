@@ -53,7 +53,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogMinimalApi", "Loggin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogWebApiDiAndProvider", "Logging\SerilogWebApiDiAndProvider\SerilogWebApiDiAndProvider.csproj", "{787625D5-6DBB-40FE-8FB7-5BD24A0C507B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighProfmanceLogging", "Logging\HighProfmanceLogging\HighProfmanceLogging.csproj", "{07492278-18EA-4271-ABD5-0CE3E6254944}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighPerformanceLogging", "Logging\HighPerformanceLogging\HighPerformanceLogging.csproj", "{07492278-18EA-4271-ABD5-0CE3E6254944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

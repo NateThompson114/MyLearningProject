@@ -1,4 +1,4 @@
-﻿using HighProfmanceLogging;
+﻿using HighPerformanceLogging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
