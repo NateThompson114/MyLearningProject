@@ -2,10 +2,14 @@
 
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
+using SerilogExampleProject;
 
 //This would produce nothing because serilog while configured, does not have a sink, which is the same as a provider in the Microsoft.Extensions.Logging world.
 var logger = new LoggerConfiguration()
-    .WriteTo.Async(x => x.Console(theme:AnsiConsoleTheme.Code), 10) // This allows Console Sync to be async, and buffer 10 messages before writing.
+    // .WriteTo.Async(x => x.Console(theme:AnsiConsoleTheme.Code), 10) // This allows Console Sync to be async, and buffer 10 messages before writing.
+    // .WriteTo.Sink<MySink>()
+    // .WriteTo.Sink(new MySink())
+    .WriteTo.MySink()
     .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit:true )
     .CreateLogger();
 
